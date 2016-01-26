@@ -48,7 +48,7 @@
 
 
 <c:if test="${param.logout != null}">
-	<div class="alert alert-success" role="alert"> <strong>Chau!</strong> Gracias por pasar por CUYS. </div>
+	<div class="alert alert-success" role="alert"> <strong>Chau!</strong> Gracias por pasar por XX. </div>
 </c:if>
 
 <form class="form-signin" action="<spring:url value="/login" />" method="POST">

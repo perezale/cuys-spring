@@ -6,4 +6,6 @@ import ar.com.cuys.webapp.entity.Role;
 
 public interface RoleRepository extends JpaRepository<Role, Integer>{
 
+	Role findByName(String name);
+
 }

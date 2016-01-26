@@ -7,7 +7,7 @@
 		<put-attribute name="footer" value="/WEB-INF/layout/footer.jsp" />
 	</definition>
 	<definition name="index" extends="common">
-		<put-attribute name="title" value="CUYS" />
+		<put-attribute name="title" value="XX" />
 		<put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
 		<put-attribute name="current" value="index" />
 	</definition>
