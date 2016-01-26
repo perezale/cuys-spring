@@ -43,7 +43,7 @@
             <ul class="nav navbar-nav">
               <li class="${current == 'index' ? 'active' : ''}"><a href="<spring:url value="/" />">Inicio</a></li>
               <security:authorize access="hasRole('ADMIN')">              
-              <li class="${current == 'users' ? 'active' : ''}"><a href="<spring:url value="/users.html" />">Usuarios</a></li>
+              	<li class="${current == 'users' ? 'active' : ''}"><a href="<spring:url value="/users.html" />">Usuarios</a></li>
               </security:authorize>              
               <li class="${current == 'register' ? 'active' : ''}"><a href="<spring:url value="/register.html" />">Registro</a></li>
               <security:authorize access="! isAuthenticated()">              	

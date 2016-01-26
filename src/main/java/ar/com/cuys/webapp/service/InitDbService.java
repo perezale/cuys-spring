@@ -47,6 +47,7 @@ public class InitDbService {
 		
 		User userAdmin = new User();
 		userAdmin.setName("admin");
+		userAdmin.setPassword("admin");
 		List<Role> roles = new ArrayList<Role>();
 		roles.add(roleAdmin);
 		roles.add(roleUser);
@@ -71,8 +72,9 @@ public class InitDbService {
 		item2.setPost(postProbabilidad);
 		item2.setPublishedDate(new Date());
 		item2.setTitle("Parcial 2008");
-		itemRepository.save(item2);		
+		itemRepository.save(item2);				
 		
 	}
 	
 }
+
