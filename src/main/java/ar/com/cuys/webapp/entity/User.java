@@ -2,12 +2,16 @@ package ar.com.cuys.webapp.entity;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
+
+import org.hibernate.validator.constraints.Email;
 
 @Entity
 public class User {
@@ -16,10 +20,14 @@ public class User {
 	@GeneratedValue
 	private Integer id;
 	
+	@Size(min=3, message="Debe tener al menos 3 caracteres")
 	private String name;
 	
+	@Size(min=1, message="Dirección de email inválida")
+	@Email(message="Dirección de email inválida")
 	private String email;
 	
+	@Size(min=5, message="Debe tener al menos 5 caracteres")
 	private String password;
 	
 	private boolean enabled;
@@ -28,7 +36,7 @@ public class User {
 	@JoinTable
 	private List<Role> roles;
 	
-	@OneToMany(mappedBy="user")
+	@OneToMany(mappedBy="user", cascade=CascadeType.REMOVE)
 	private List<Post> posts;
 
 	

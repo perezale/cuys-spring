@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.validator.constraints.URL;
+
 @Entity
 public class Item {
 
@@ -20,6 +22,8 @@ public class Item {
 	private String description;
 	@Column(name = "publish_date")
 	private Date publishedDate;
+	
+	@URL(message="URL inválida")
 	private String link;
 
 	@ManyToOne

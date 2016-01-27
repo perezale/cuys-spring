@@ -37,7 +37,9 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<spring:url value="/" />">Viterbi</a>
+            <a class="navbar-brand" href="<spring:url value="/" />">
+<!--             <img width="80" style="margin-top: -9px" src="/img/logob.png"/> -->
+            XX</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
