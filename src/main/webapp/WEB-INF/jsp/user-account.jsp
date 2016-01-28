@@ -8,7 +8,7 @@
 	data-target="#myModal">Nueva entrada</button>
 
 <!-- Modal -->
-<form:form commandName="post" cssClass="form-horizontal">
+<form:form commandName="post" cssClass="form-horizontal postForm">
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
@@ -51,16 +51,40 @@
 			$("#modalRemove .removeBtn").attr("href", $(this).attr("href"));
 			$("#modalRemove").modal();
 		});
+		$(".postForm").validate({
+			
+			rules : {
+				title : {
+					required : true,
+					minlength : 1
+				},
+				message : {
+					required : true,
+					minlength : 1					
+				}
+			},
+			highlight : function(element){
+				$(element).closest(".form-group").removeClass("has-success").addClass("has-error");	
+			},
+			unhighlight : function(element){
+				$(element).closest(".form-group").removeClass("has-error").addClass("has-success");	
+			}			
+		});
 	});
 </script>
 
 
 <c:forEach items="${user.posts}" var="post">
-	<h1><c:out value="${post.title}" /></h1>
-	
-	<a href="<spring:url value="/post/remove/${post.id}.html"/>"  class="btn btn-danger triggerRemove" >Eliminar</a>
-	
-	<p><c:out value="${post.message}" /></p>
+	<h1>
+		<c:out value="${post.title}" />
+	</h1>
+
+	<a href="<spring:url value="/post/remove/${post.id}.html"/>"
+		class="btn btn-danger triggerRemove">Eliminar</a>
+
+	<p>
+		<c:out value="${post.message}" />
+	</p>
 
 	<table class="table table-bordered table-hover table-striped">
 		<thead>
@@ -82,20 +106,23 @@
 </c:forEach>
 
 <!-- Modal -->
-<div class="modal fade" id="modalRemove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Eliminar mensaje</h4>
-      </div>
-      <div class="modal-body">
-        ¿Seguro que desea eliminar el mensaje?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        <a href="" class="btn btn-danger removeBtn">Eliminar</a>        
-      </div>
-    </div>
-  </div>
+<div class="modal fade" id="modalRemove" tabindex="-1" role="dialog"
+	aria-labelledby="myModalLabel">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+					aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel">Eliminar mensaje</h4>
+			</div>
+			<div class="modal-body">¿Seguro que desea eliminar el mensaje?
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+				<a href="" class="btn btn-danger removeBtn">Eliminar</a>
+			</div>
+		</div>
+	</div>
 </div>

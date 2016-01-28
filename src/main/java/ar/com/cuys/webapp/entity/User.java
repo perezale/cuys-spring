@@ -3,6 +3,7 @@ package ar.com.cuys.webapp.entity;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,6 +14,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 
+import ar.com.cuys.webapp.annotations.UniqueUsername;
+
 @Entity
 public class User {
 
@@ -21,6 +24,8 @@ public class User {
 	private Integer id;
 	
 	@Size(min=3, message="Debe tener al menos 3 caracteres")
+	@Column(unique=true)
+	@UniqueUsername(message="El nombre de usuario ingresado ya existe")
 	private String name;
 	
 	@Size(min=1, message="Dirección de email inválida")
