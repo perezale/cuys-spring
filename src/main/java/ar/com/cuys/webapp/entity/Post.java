@@ -21,8 +21,8 @@ public class Post {
 	@Size(min=1, message="El titulo no debe ser vacio")
 	private String title;
 	
-	@Size(min=1, message="El titulo no debe ser vacio")
-	private String message;
+	@Size(min=1, message="La url no debe ser vacia")
+	private String url;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -63,12 +63,13 @@ public class Post {
 		this.title = title;
 	}
 
-	public String getMessage() {
-		return message;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setMessage(String message) {
-		this.message = message;
+	public void setUrl(String url) {
+		this.url = url;
 	}
+
 
 }

@@ -59,7 +59,7 @@ public class InitDbService {
 		
 		Post postProbabilidad = new Post();
 		postProbabilidad.setTitle("Final Febrero 2016");
-		postProbabilidad.setMessage("Ultimo examen de probabilidad");
+		postProbabilidad.setUrl("https://twitrss.me/twitter_user_to_rss/?user=cuys");
 		postProbabilidad.setUser(userAdmin);
 		postRepository.save(postProbabilidad);
 		

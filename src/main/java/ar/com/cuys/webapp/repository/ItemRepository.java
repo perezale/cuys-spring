@@ -11,5 +11,7 @@ import ar.com.cuys.webapp.entity.Post;
 public interface ItemRepository extends JpaRepository<Item, Integer> {
 
 	List<Item> findByPost(Post post, Pageable pageable);
+	
+	Item findByPostAndLink(Post post, String link);
 
 }

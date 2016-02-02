@@ -21,7 +21,7 @@
 	
 	<a href="<spring:url value="/post/remove/${post.id}.html"/>"  class="btn btn-danger triggerRemove" >Eliminar</a>
 	
-	<p><c:out value="${post.message}" /></p>
+	<p><c:out value="${post.url}" /></p>
 
 	<table class="table table-bordered table-hover table-striped">
 		<thead>

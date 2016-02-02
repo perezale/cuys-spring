@@ -19,6 +19,7 @@ public class Item {
 	private Integer id;
 
 	private String title;
+	@Column(columnDefinition = "longvarchar")
 	private String description;
 	@Column(name = "publish_date")
 	private Date publishedDate;

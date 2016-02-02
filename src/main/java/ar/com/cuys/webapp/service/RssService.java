@@ -1,5 +1,6 @@
 package ar.com.cuys.webapp.service;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -12,6 +13,9 @@ import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.Source;
+import javax.xml.transform.stream.StreamSource;
+
+import org.springframework.stereotype.Service;
 
 import ar.com.cuys.webapp.entity.Item;
 import ar.com.cuys.webapp.exception.RssException;
@@ -20,7 +24,16 @@ import ar.com.cuys.webapp.rss.TRss;
 import ar.com.cuys.webapp.rss.TRssChannel;
 import ar.com.cuys.webapp.rss.TRssItem;
 
+@Service
 public class RssService {
+	
+	public List<Item> getItems(File file) throws RssException{
+		return getItems(new StreamSource(file));
+	}
+	
+	public List<Item> getItems(String url) throws RssException{
+		return getItems(new StreamSource(url));
+	}
 	
 	public List<Item> getItems(Source source) throws RssException{
 		List<Item> list = new ArrayList<Item>();
@@ -41,7 +54,6 @@ public class RssService {
 					item.setPublishedDate(date);
 					list.add(item);
 				}
-				
 			}					
 		} catch (JAXBException e) {
 			throw new RssException(e);

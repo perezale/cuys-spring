@@ -29,10 +29,10 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="message" class="col-sm-2 control-label">Mensaje:</label>
+						<label for="url" class="col-sm-2 control-label">URL:</label>
 						<div class="col-sm-10">
-							<form:input path="message" cssClass="form-control" />
-							<form:errors path="message" />
+							<form:input path="url" cssClass="form-control" />
+							<form:errors path="url" />
 						</div>
 					</div>
 				</div>
@@ -58,8 +58,9 @@
 					required : true,
 					minlength : 1
 				},
-				message : {
+				url : {
 					required : true,
+					url: true,
 					minlength : 1					
 				}
 			},
@@ -83,21 +84,29 @@
 		class="btn btn-danger triggerRemove">Eliminar</a>
 
 	<p>
-		<c:out value="${post.message}" />
+		<c:out value="${post.url}" />
 	</p>
 
 	<table class="table table-bordered table-hover table-striped">
 		<thead>
 			<tr>
-				<th>Title</th>
-				<th>Link</th>
+				<th>Date</th>
+				<th>Item</th>
 			</tr>
 		</thead>
 		<tbody>
 			<c:forEach items="${post.items}" var="item">
 				<tr>
-					<td><c:out value="${item.title}" /></td>
-					<td><c:out value="${item.link}" /></td>
+					<td><c:out value="${item.publishedDate}" /></td>
+					<td>
+						<strong>
+						<a href="<c:out value="${item.link}" />" target="_blank">
+							<c:out value="${item.title}" />
+						</a>
+						</strong>						
+						<br />
+						${item.description}
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
