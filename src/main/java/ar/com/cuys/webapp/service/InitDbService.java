@@ -1,7 +1,6 @@
 package ar.com.cuys.webapp.service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,11 +10,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ar.com.cuys.webapp.entity.Item;
 import ar.com.cuys.webapp.entity.Post;
 import ar.com.cuys.webapp.entity.Role;
 import ar.com.cuys.webapp.entity.User;
-import ar.com.cuys.webapp.repository.ItemRepository;
 import ar.com.cuys.webapp.repository.PostRepository;
 import ar.com.cuys.webapp.repository.RoleRepository;
 import ar.com.cuys.webapp.repository.UserRepository;
@@ -31,10 +28,7 @@ public class InitDbService {
 	private UserRepository userRepository;
 	
 	@Autowired
-	private PostRepository postRepository;
-	
-	@Autowired
-	private ItemRepository itemRepository;
+	private PostRepository postRepository;	
 	
 	@PostConstruct
 	public void init(){
@@ -58,24 +52,10 @@ public class InitDbService {
 		userRepository.save(userAdmin);
 		
 		Post postProbabilidad = new Post();
-		postProbabilidad.setTitle("Final Febrero 2016");
+		postProbabilidad.setTitle("Twitter");
 		postProbabilidad.setUrl("https://twitrss.me/twitter_user_to_rss/?user=cuys");
 		postProbabilidad.setUser(userAdmin);
-		postRepository.save(postProbabilidad);
-		
-		Item item1 = new Item();
-		item1.setLink("http://www.comoustedyasabe.com.ar/datos/estadisticas-Final_09.jpg");
-		item1.setPost(postProbabilidad);
-		item1.setPublishedDate(new Date());
-		item1.setTitle("Final Probabilidad Febrero 2016");
-		itemRepository.save(item1);		
-		
-		Item item2 = new Item();
-		item2.setLink("http://www.comoustedyasabe.com.ar/datos/estadisticas-Parcial(2008).jpg");
-		item2.setPost(postProbabilidad);
-		item2.setPublishedDate(new Date());
-		item2.setTitle("Parcial 2008");
-		itemRepository.save(item2);				
+		postRepository.save(postProbabilidad);		
 		
 	}
 	
