@@ -6,34 +6,26 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Post {
+public class Subject {
 
 	@Id
 	@GeneratedValue
 	private Integer id;
-	
-	@Size(min=1, message="El titulo no debe ser vacio")
+
+	@Size(min = 1, message = "El titulo no debe ser vacio")
 	private String title;
-	
-	@Size(min=1, message="La url no debe ser vacia")
+
+	@Size(min = 1, message = "La url no debe ser vacia")
 	private String url;
 
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+	private String externalUrl;
 
-	@OneToMany(mappedBy = "post", cascade=CascadeType.REMOVE)	
-	private List<Item> items;
-	
-	@ManyToOne
-	@JoinColumn(name = "post_id")
-	private Subject subject;
+	@OneToMany(mappedBy = "subject", cascade = CascadeType.REMOVE)
+	private List<Post> posts;
 
 	public Integer getId() {
 		return id;
@@ -43,20 +35,12 @@ public class Post {
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
+	public List<Post> getPosts() {
+		return posts;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public List<Item> getItems() {
-		return items;
-	}
-
-	public void setItems(List<Item> items) {
-		this.items = items;
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
 	}
 
 	public String getTitle() {
@@ -75,5 +59,12 @@ public class Post {
 		this.url = url;
 	}
 
+	public String getExternalUrl() {
+		return externalUrl;
+	}
+
+	public void setExternalUrl(String externalUrl) {
+		this.externalUrl = externalUrl;
+	}
 
 }

@@ -6,12 +6,17 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 
 import ar.com.cuys.webapp.entity.Post;
 import ar.com.cuys.webapp.entity.Role;
+import ar.com.cuys.webapp.entity.Subject;
 import ar.com.cuys.webapp.entity.User;
 import ar.com.cuys.webapp.repository.PostRepository;
 import ar.com.cuys.webapp.repository.RoleRepository;
@@ -57,6 +62,15 @@ public class InitDbService {
 		postProbabilidad.setUser(userAdmin);
 		postRepository.save(postProbabilidad);		
 		
+		RestTemplate restTemplate = new RestTemplate();
+		ResponseEntity<List<Subject>> rateResponse =
+		        restTemplate.exchange("http://www.comoustedyasabe.com.ar/api/catedras",
+		                    HttpMethod.GET, null, new ParameterizedTypeReference<List<Subject>>() {
+		            });
+		List<Subject> rates = rateResponse.getBody();
+		for(Subject s : rates){
+			System.out.println(s.getTitle());
+		}
 	}
 	
 }
