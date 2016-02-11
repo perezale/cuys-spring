@@ -53,7 +53,7 @@ public class InitDbService {
 		
 		Post postProbabilidad = new Post();
 		postProbabilidad.setTitle("Twitter");
-		postProbabilidad.setUrl("https://twitrss.me/twitter_user_to_rss/?user=cuys");
+		postProbabilidad.setUrl("https://queryfeed.net/tw?q=%40cuys");
 		postProbabilidad.setUser(userAdmin);
 		postRepository.save(postProbabilidad);		
 		
