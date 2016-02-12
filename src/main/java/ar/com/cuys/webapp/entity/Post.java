@@ -34,6 +34,10 @@ public class Post {
 	@ManyToOne
 	@JoinColumn(name = "post_id")
 	private Subject subject;
+	
+	@ManyToOne
+	@JoinColumn(name = "category_id")
+	private Category category;
 
 	public Integer getId() {
 		return id;

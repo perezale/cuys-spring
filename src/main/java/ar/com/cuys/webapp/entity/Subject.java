@@ -20,7 +20,7 @@ public class Subject {
 	private String title;
 
 	@Size(min = 1, message = "La url no debe ser vacia")
-	private String url;
+	private String urlTitle;
 
 	private String externalUrl;
 
@@ -33,6 +33,14 @@ public class Subject {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getUrlTitle() {
+		return urlTitle;
+	}
+
+	public void setUrlTitle(String urlTitle) {
+		this.urlTitle = urlTitle;
 	}
 
 	public List<Post> getPosts() {
@@ -49,14 +57,6 @@ public class Subject {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public String getUrl() {
-		return url;
-	}
-
-	public void setUrl(String url) {
-		this.url = url;
 	}
 
 	public String getExternalUrl() {

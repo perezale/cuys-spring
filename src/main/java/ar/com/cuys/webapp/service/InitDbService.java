@@ -14,9 +14,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
+import ar.com.cuys.legacy.entity.Catedra;
+import ar.com.cuys.legacy.entity.Categoria;
 import ar.com.cuys.webapp.entity.Post;
 import ar.com.cuys.webapp.entity.Role;
-import ar.com.cuys.webapp.entity.Subject;
 import ar.com.cuys.webapp.entity.User;
 import ar.com.cuys.webapp.repository.PostRepository;
 import ar.com.cuys.webapp.repository.RoleRepository;
@@ -63,13 +64,23 @@ public class InitDbService {
 		postRepository.save(postProbabilidad);		
 		
 		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<List<Subject>> rateResponse =
+		ResponseEntity<List<Catedra>> rateResponse =
 		        restTemplate.exchange("http://www.comoustedyasabe.com.ar/api/catedras",
-		                    HttpMethod.GET, null, new ParameterizedTypeReference<List<Subject>>() {
+		                    HttpMethod.GET, null, new ParameterizedTypeReference<List<Catedra>>() {
 		            });
-		List<Subject> rates = rateResponse.getBody();
-		for(Subject s : rates){
+		List<Catedra> catedras = rateResponse.getBody();
+		ResponseEntity<List<Categoria>> categoriasResponse =
+		        restTemplate.exchange("http://www.comoustedyasabe.com.ar/api/categorias",
+		                    HttpMethod.GET, null, new ParameterizedTypeReference<List<Categoria>>() {
+		            });
+		List<Categoria> categorias = categoriasResponse.getBody();
+		System.out.println("Catedras");
+		for(Catedra s : catedras){
 			System.out.println(s.getTitle());
+		}
+		System.out.println("Categorias");
+		for(Categoria c : categorias){
+			System.out.println(c.getNombre());
 		}
 	}
 	
