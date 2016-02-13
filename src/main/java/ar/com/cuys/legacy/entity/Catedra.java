@@ -42,4 +42,9 @@ public class Catedra {
 		this.ref_link = ref_link;
 	}
 
+	@Override
+	public String toString() {
+		return "Catedra [id=" + id + ", title=" + title + ", url_title=" + url_title + ", ref_link=" + ref_link + "]";
+	}
+
 }

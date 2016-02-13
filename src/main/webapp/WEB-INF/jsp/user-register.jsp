@@ -3,6 +3,10 @@
 
 <%@ include file="../layout/taglib.jsp" %>
 
+<div class="page-header">
+    <h1>Nuevo usuario</h1>
+</div>
+
 <form:form commandName="user" cssClass="form-horizontal registrationForm">
 
 	<c:if test="${param.success eq true}">
@@ -85,7 +89,7 @@ $(document).ready(function(){
 					},
 					messages : {
 						name : {
-							remote : "El nombre de usuario ingresado ya existe"
+							remote : "El nombre de usuario ingresado no es valido"
 						}
 					}
 				}

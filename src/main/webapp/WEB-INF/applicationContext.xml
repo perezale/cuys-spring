@@ -44,7 +44,7 @@
 		entity-manager-factory-ref="emf" transaction-manager-ref="transactionManager" />
 
 	<import resource="security.xml" />
-	
+
 	<task:annotation-driven />
-	
+
 </beans>

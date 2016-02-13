@@ -3,7 +3,9 @@
 
 <%@ include file="../layout/taglib.jsp"%>
 
-<h1><c:out value="${user.name}" /></h1>
+<div class="page-header">
+    <h1><c:out value="${user.name}" /></h1>
+</div>
 
 <script type="text/javascript">
 	$(document).ready(function(){

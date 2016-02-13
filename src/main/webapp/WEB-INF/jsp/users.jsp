@@ -3,6 +3,10 @@
 
 <%@ include file="../layout/taglib.jsp" %>
 
+<div class="page-header">
+    <h1>Usuarios</h1>
+</div>
+
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('.triggerRemove').click(function(e){

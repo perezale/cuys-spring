@@ -22,7 +22,7 @@ public class Subject {
 	@Size(min = 1, message = "La url no debe ser vacia")
 	private String urlTitle;
 
-	private String externalUrl;
+	private String referenceLink;
 
 	@OneToMany(mappedBy = "subject", cascade = CascadeType.REMOVE)
 	private List<Post> posts;
@@ -59,12 +59,12 @@ public class Subject {
 		this.title = title;
 	}
 
-	public String getExternalUrl() {
-		return externalUrl;
+	public String getReferenceLink() {
+		return referenceLink;
 	}
 
-	public void setExternalUrl(String externalUrl) {
-		this.externalUrl = externalUrl;
+	public void setReferenceLink(String referenceLink) {
+		this.referenceLink = referenceLink;
 	}
 
 }
