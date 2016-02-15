@@ -13,7 +13,7 @@
 		data-target="#myModal">Nueva catedra</button>
 	
 	<!-- Modal -->
-	<form:form commandName="subject" cssClass="form-horizontal postForm">
+	<form:form commandName="subject" cssClass="form-horizontal blogForm">
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel">
 			<div class="modal-dialog" role="document">
@@ -63,7 +63,7 @@
 				$("#modalRemove .removeBtn").attr("href", $(this).attr("href"));
 				$("#modalRemove").modal();
 			});
-			$(".postForm").validate({
+			$(".blogForm").validate({
 				
 				rules : {
 					title : {

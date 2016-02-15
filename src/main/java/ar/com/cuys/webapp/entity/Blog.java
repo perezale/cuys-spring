@@ -12,7 +12,7 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Post {
+public class Blog {
 
 	@Id
 	@GeneratedValue
@@ -28,17 +28,9 @@ public class Post {
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	@OneToMany(mappedBy = "post", cascade=CascadeType.REMOVE)	
+	@OneToMany(mappedBy = "blog", cascade=CascadeType.REMOVE)	
 	private List<Item> items;
 	
-	@ManyToOne
-	@JoinColumn(name = "post_id")
-	private Subject subject;
-	
-	@ManyToOne
-	@JoinColumn(name = "category_id")
-	private Category category;
-
 	public Integer getId() {
 		return id;
 	}

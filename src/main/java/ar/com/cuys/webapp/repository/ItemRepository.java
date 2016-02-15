@@ -6,12 +6,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import ar.com.cuys.webapp.entity.Item;
-import ar.com.cuys.webapp.entity.Post;
+import ar.com.cuys.webapp.entity.Blog;
 
 public interface ItemRepository extends JpaRepository<Item, Integer> {
 
-	List<Item> findByPost(Post post, Pageable pageable);
+	List<Item> findByBlog(Blog blog, Pageable pageable);
 	
-	Item findByPostAndLink(Post post, String link);
+	Item findByBlogAndLink(Blog blog, String link);
 
 }

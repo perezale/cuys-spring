@@ -10,10 +10,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ar.com.cuys.webapp.entity.Post;
+import ar.com.cuys.webapp.entity.Blog;
 import ar.com.cuys.webapp.entity.Role;
 import ar.com.cuys.webapp.entity.User;
-import ar.com.cuys.webapp.repository.PostRepository;
+import ar.com.cuys.webapp.repository.BlogRepository;
 import ar.com.cuys.webapp.repository.RoleRepository;
 import ar.com.cuys.webapp.repository.UserRepository;
 
@@ -28,7 +28,7 @@ public class InitDbService {
 	private UserRepository userRepository;
 	
 	@Autowired
-	private PostRepository postRepository;	
+	private BlogRepository blogRepository;	
 	
 	@PostConstruct
 	public void init(){
@@ -51,11 +51,11 @@ public class InitDbService {
 		userAdmin.setRoles(roles);
 		userRepository.save(userAdmin);
 		
-		Post postProbabilidad = new Post();
-		postProbabilidad.setTitle("Twitter");
-		postProbabilidad.setUrl("https://queryfeed.net/tw?q=%40cuys");
-		postProbabilidad.setUser(userAdmin);
-		postRepository.save(postProbabilidad);		
+		Blog blogExactas = new Blog();
+		blogExactas.setTitle("Twitter");
+		blogExactas.setUrl("http://www.exa.unicen.edu.ar/es/noticias/rss");
+		blogExactas.setUser(userAdmin);
+		blogRepository.save(blogExactas);		
 		
 		
 	}

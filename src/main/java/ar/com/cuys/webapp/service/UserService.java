@@ -11,11 +11,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.com.cuys.webapp.entity.Item;
-import ar.com.cuys.webapp.entity.Post;
+import ar.com.cuys.webapp.entity.Blog;
 import ar.com.cuys.webapp.entity.Role;
 import ar.com.cuys.webapp.entity.User;
 import ar.com.cuys.webapp.repository.ItemRepository;
-import ar.com.cuys.webapp.repository.PostRepository;
+import ar.com.cuys.webapp.repository.BlogRepository;
 import ar.com.cuys.webapp.repository.RoleRepository;
 import ar.com.cuys.webapp.repository.UserRepository;
 
@@ -27,11 +27,11 @@ public class UserService {
 	private UserRepository userRepository;
 
 	@Autowired
-	private PostRepository postRepository;
+	private BlogRepository blogRepository;
 
 	@Autowired
 	private ItemRepository itemRepository;
-	
+
 	@Autowired
 	private RoleRepository roleRepository;
 
@@ -43,44 +43,46 @@ public class UserService {
 		return userRepository.findOne(id);
 	}
 
+	/**
+	 * @param id
+	 * @return
+	 */
 	@Transactional
-	public User findOneWithPosts(int id) {
+	public User findOneWithBlogs(int id) {
 		User user = findOne(id);
-		List<Post> posts = postRepository.findByUser(user);
-		for (Post post : posts) {
-			List<Item> items = itemRepository.findByPost(post, new PageRequest(0, 10, Direction.DESC, "publishedDate"));
-			post.setItems(items);
+		List<Blog> blogs = blogRepository.findByUser(user);
+		for (Blog blog : blogs) {
+			List<Item> items = itemRepository.findByBlog(blog, new PageRequest(0, 10, Direction.DESC, "publishedDate"));
+			blog.setItems(items);
 		}
-		user.setPosts(posts);
+		user.setBlogs(blogs);
 		return user;
 	}
 
 	public void save(User user) {
 		user.setEnabled(true);
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		user.setPassword(encoder.encode(user.getPassword()));			
-		
-		List<Role> roles = new ArrayList<Role>();		
+		user.setPassword(encoder.encode(user.getPassword()));
+
+		List<Role> roles = new ArrayList<Role>();
 		roles.add(roleRepository.findByName("ROLE_USER"));
 		user.setRoles(roles);
-		
+
 		userRepository.save(user);
-		
+
 	}
 
-	public User findOneWithPosts(String name) {
+	public User findOneWithBlogs(String name) {
 		User user = userRepository.findByName(name);
-		return findOneWithPosts(user.getId());
+		return findOneWithBlogs(user.getId());
 	}
 
 	public void delete(int id) {
 		userRepository.delete(id);
-		
 	}
 
 	public User findOne(String username) {
 		return userRepository.findByName(username);
-		
 	}
 
 }

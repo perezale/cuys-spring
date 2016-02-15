@@ -18,12 +18,12 @@
 </script>
 
 
-<c:forEach items="${user.posts}" var="post">
-	<h1><c:out value="${post.title}" /></h1>
+<c:forEach items="${user.blogs}" var="blog">
+	<h1><c:out value="${blog.title}" /></h1>
 	
-	<a href="<spring:url value="/post/remove/${post.id}.html"/>"  class="btn btn-danger triggerRemove" >Eliminar</a>
+	<a href="<spring:url value="/blog/remove/${blog.id}.html"/>"  class="btn btn-danger triggerRemove" >Eliminar</a>
 	
-	<p><c:out value="${post.url}" /></p>
+	<p><c:out value="${blog.url}" /></p>
 
 	<table class="table table-bordered table-hover table-striped">
 		<thead>
@@ -33,7 +33,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${post.items}" var="item">
+			<c:forEach items="${blog.items}" var="item">
 				<tr>
 					<td><c:out value="${item.title}" /></td>
 					<td><c:out value="${item.link}" /></td>

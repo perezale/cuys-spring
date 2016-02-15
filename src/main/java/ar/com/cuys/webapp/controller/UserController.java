@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import ar.com.cuys.webapp.entity.Post;
-import ar.com.cuys.webapp.service.PostService;
+import ar.com.cuys.webapp.entity.Blog;
+import ar.com.cuys.webapp.service.BlogService;
 import ar.com.cuys.webapp.service.UserService;
 
 @Controller
@@ -24,35 +24,35 @@ public class UserController {
 	private UserService userService;
 	
 	@Autowired
-	private PostService postService;
+	private BlogService blogService;
 	
-	@ModelAttribute("post")
-	public Post constructPost(){
-		return new Post();
+	@ModelAttribute("blog")
+	public Blog constructBlog(){
+		return new Blog();
 	}
 	
 	@RequestMapping("/account")
 	public String account(Model model, Principal principal)
 	{
 		String name = principal.getName();
-		model.addAttribute("user", userService.findOneWithPosts(name));
+		model.addAttribute("user", userService.findOneWithBlogs(name));
 		return "user-account";
 	}
 	
 	@RequestMapping(path="/account", method=RequestMethod.POST)
-	public String doAddPost(Model model, @Valid @ModelAttribute("post") Post post,BindingResult result, Principal principal){		
+	public String doAddBlog(Model model, @Valid @ModelAttribute("blog") Blog blog,BindingResult result, Principal principal){		
 		if(result.hasErrors()){
 			return account(model, principal);
 		}
 		String name = principal.getName();
-		postService.save(post,name);
+		blogService.save(blog,name);
 		return "redirect:/account.html";
 	}
 	
-	@RequestMapping("post/remove/{id}")
-	public String removePost(@PathVariable int id)	{
-		Post post = postService.findOne(id);		
-		postService.delete(post);
+	@RequestMapping("blog/remove/{id}")
+	public String removeBlog(@PathVariable int id)	{
+		Blog blog = blogService.findOne(id);		
+		blogService.delete(blog);
 		return "redirect:/account.html";
 	}
 	

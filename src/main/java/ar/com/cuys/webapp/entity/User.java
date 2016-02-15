@@ -42,15 +42,15 @@ public class User {
 	private List<Role> roles;
 	
 	@OneToMany(mappedBy="user", cascade=CascadeType.REMOVE)
-	private List<Post> posts;
+	private List<Blog> blogs;
 
 	
-	public List<Post> getPosts() {
-		return posts;
+	public List<Blog> getBlogs() {
+		return blogs;
 	}
 
-	public void setPosts(List<Post> posts) {
-		this.posts = posts;
+	public void setBlogs(List<Blog> blogs) {
+		this.blogs = blogs;
 	}
 
 	public List<Role> getRoles() {

@@ -8,21 +8,21 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import ar.com.cuys.webapp.entity.Item;
-import ar.com.cuys.webapp.entity.Post;
+import ar.com.cuys.webapp.entity.Blog;
 import ar.com.cuys.webapp.entity.User;
 import ar.com.cuys.webapp.exception.RssException;
 import ar.com.cuys.webapp.repository.ItemRepository;
-import ar.com.cuys.webapp.repository.PostRepository;
+import ar.com.cuys.webapp.repository.BlogRepository;
 import ar.com.cuys.webapp.repository.UserRepository;
 
 @Service
-public class PostService {
+public class BlogService {
 
 	@Autowired
 	private UserRepository userRepository;
 	
 	@Autowired
-	private PostRepository postRepository;
+	private BlogRepository blogRepository;
 	
 	@Autowired
 	private RssService rssService;
@@ -31,14 +31,14 @@ public class PostService {
 	private ItemRepository itemRepository;
 	
 	
-	public void saveItems(Post post){		
+	public void saveItems(Blog blog){		
 		List<Item> items;
 		try {
-			items = rssService.getItems(post.getUrl());
+			items = rssService.getItems(blog.getUrl());
 			for(Item item : items){
-				Item savedItem = itemRepository.findByPostAndLink(post, item.getLink());
+				Item savedItem = itemRepository.findByBlogAndLink(blog, item.getLink());
 				if(savedItem == null){
-					item.setPost(post);
+					item.setBlog(blog);
 					itemRepository.save(item);
 				}				
 			}
@@ -49,27 +49,27 @@ public class PostService {
 	}
 	
 	//@Scheduled(fixedDelay=3600000)
-	public void reloadPosts(){
-		List<Post> posts = postRepository.findAll();
-		for(Post post : posts){
-			saveItems(post);
+	public void reloadBlogs(){
+		List<Blog> blogs = blogRepository.findAll();
+		for(Blog blog : blogs){
+			saveItems(blog);
 		}
 	}
 	
-	public void save(Post post, String name) {
+	public void save(Blog blog, String name) {
 		User user = userRepository.findByName(name);
-		post.setUser(user);
-		postRepository.save(post);		
-		saveItems(post);
+		blog.setUser(user);
+		blogRepository.save(blog);		
+		saveItems(blog);
 	}
 
-	@PreAuthorize("#post.user.name == authentication.name or hasRole('ROLE_ADMIN')")
-	public void delete(@P("post") Post post){
-		postRepository.delete(post);
+	@PreAuthorize("#blog.user.name == authentication.name or hasRole('ROLE_ADMIN')")
+	public void delete(@P("blog") Blog blog){
+		blogRepository.delete(blog);
 	}
 
-	public Post findOne(int id) {
-		return postRepository.findOne(id);
+	public Blog findOne(int id) {
+		return blogRepository.findOne(id);
 	}
 
 }

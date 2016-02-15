@@ -3,7 +3,7 @@
 	<persistence-unit name="webapp">	
 		<class>ar.com.cuys.webapp.entity.Role</class>
 		<class>ar.com.cuys.webapp.entity.User</class>
-		<class>ar.com.cuys.webapp.entity.Post</class>
+		<class>ar.com.cuys.webapp.entity.Blog</class>
 		<class>ar.com.cuys.webapp.entity.Item</class>
 		<class>ar.com.cuys.webapp.entity.Subject</class>
 		<class>ar.com.cuys.webapp.entity.Category</class>		 

@@ -29,7 +29,7 @@
 				<c:forEach items="${items}" var="item">
 					<tr>
 						<td><c:out value="${item.publishedDate}" /> <br /> <c:out
-								value="${item.post.title}" /></td>
+								value="${item.blog.title}" /></td>
 
 						<td><strong> <a
 								href="<c:out value="${item.link}" />" target="_blank"> <c:out

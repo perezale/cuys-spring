@@ -1,12 +1,8 @@
 package ar.com.cuys.webapp.entity;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -23,10 +19,10 @@ public class Subject {
 	private String urlTitle;
 
 	private String referenceLink;
-
+/*
 	@OneToMany(mappedBy = "subject", cascade = CascadeType.REMOVE)
-	private List<Post> posts;
-
+	private List<Blog> posts;
+*/
 	public Integer getId() {
 		return id;
 	}
@@ -41,14 +37,6 @@ public class Subject {
 
 	public void setUrlTitle(String urlTitle) {
 		this.urlTitle = urlTitle;
-	}
-
-	public List<Post> getPosts() {
-		return posts;
-	}
-
-	public void setPosts(List<Post> posts) {
-		this.posts = posts;
 	}
 
 	public String getTitle() {

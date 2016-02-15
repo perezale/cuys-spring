@@ -24,7 +24,7 @@ public class AdminController {
 	
 	@RequestMapping("/{id}")
 	public String detail(Model model, @PathVariable int id){
-		User user = userService.findOneWithPosts(id);		
+		User user = userService.findOneWithBlogs(id);		
 		model.addAttribute("user",user);		
 		return "user-detail";
 	}

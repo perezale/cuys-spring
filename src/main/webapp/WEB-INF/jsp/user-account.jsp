@@ -8,7 +8,7 @@
 	data-target="#myModal">Nueva entrada</button>
 
 <!-- Modal -->
-<form:form commandName="post" cssClass="form-horizontal postForm">
+<form:form commandName="blog" cssClass="form-horizontal blogForm">
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="myModalLabel">
 		<div class="modal-dialog" role="document">
@@ -51,7 +51,7 @@
 			$("#modalRemove .removeBtn").attr("href", $(this).attr("href"));
 			$("#modalRemove").modal();
 		});
-		$(".postForm").validate({
+		$(".blogForm").validate({
 			
 			rules : {
 				title : {
@@ -75,16 +75,16 @@
 </script>
 
 
-<c:forEach items="${user.posts}" var="post">
+<c:forEach items="${user.blogs}" var="blog">
 	<h1>
-		<c:out value="${post.title}" />
+		<c:out value="${blog.title}" />
 	</h1>
 
-	<a href="<spring:url value="/post/remove/${post.id}.html"/>"
+	<a href="<spring:url value="/blog/remove/${blog.id}.html"/>"
 		class="btn btn-danger triggerRemove">Eliminar</a>
 
 	<p>
-		<c:out value="${post.url}" />
+		<c:out value="${blog.url}" />
 	</p>
 
 	<table class="table table-bordered table-hover table-striped">
@@ -95,7 +95,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${post.items}" var="item">
+			<c:forEach items="${blog.items}" var="item">
 				<tr>
 					<td><c:out value="${item.publishedDate}" /></td>
 					<td>
