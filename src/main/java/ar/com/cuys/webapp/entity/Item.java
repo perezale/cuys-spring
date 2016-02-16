@@ -19,8 +19,10 @@ public class Item {
 	private Integer id;
 
 	private String title;
-	@Column(columnDefinition = "longvarchar")
+	
+	@Column(columnDefinition = "longvarchar")	
 	private String description;
+	
 	@Column(name = "publish_date")
 	private Date publishedDate;
 	
@@ -39,8 +41,8 @@ public class Item {
 		return blog;
 	}
 
-	public void setBlog(Blog blog) {
-		this.blog = blog;
+	public void setBlog(Blog post) {
+		this.blog = post;
 	}
 
 	public void setId(Integer id) {

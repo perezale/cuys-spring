@@ -1,6 +1,7 @@
 package ar.com.cuys.webapp.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,9 +12,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.com.cuys.webapp.entity.Blog;
+import ar.com.cuys.webapp.entity.Post;
 import ar.com.cuys.webapp.entity.Role;
 import ar.com.cuys.webapp.entity.User;
 import ar.com.cuys.webapp.repository.BlogRepository;
+import ar.com.cuys.webapp.repository.PostRepository;
 import ar.com.cuys.webapp.repository.RoleRepository;
 import ar.com.cuys.webapp.repository.UserRepository;
 
@@ -29,6 +32,9 @@ public class InitDbService {
 	
 	@Autowired
 	private BlogRepository blogRepository;	
+	
+	@Autowired
+	private PostRepository postRepository;
 	
 	@PostConstruct
 	public void init(){
@@ -52,11 +58,16 @@ public class InitDbService {
 		userRepository.save(userAdmin);
 		
 		Blog blogExactas = new Blog();
-		blogExactas.setTitle("Twitter");
+		blogExactas.setTitle("Exactas");
 		blogExactas.setUrl("http://www.exa.unicen.edu.ar/es/noticias/rss");
 		blogExactas.setUser(userAdmin);
 		blogRepository.save(blogExactas);		
 		
+		Post post = new Post();
+		post.setMessage("[Diseño de sistemas] Para el que no vió la pág.. <br><br>Jueves 13/08: sin clases <br>Martes 18/08: primera clase teórica <br>Publicado a las hace 5 horas por Juan Feldman");
+		post.setPublishedDate(new Date());
+		post.setUser(userAdmin);
+		postRepository.save(post);
 		
 	}
 	

@@ -6,7 +6,9 @@
 		<class>ar.com.cuys.webapp.entity.Blog</class>
 		<class>ar.com.cuys.webapp.entity.Item</class>
 		<class>ar.com.cuys.webapp.entity.Subject</class>
-		<class>ar.com.cuys.webapp.entity.Category</class>		 
+		<class>ar.com.cuys.webapp.entity.Category</class>
+		<class>ar.com.cuys.webapp.entity.Post</class>
+		<class>ar.com.cuys.webapp.entity.Attachment</class>		 
 	</persistence-unit>
 	
 </persistence>

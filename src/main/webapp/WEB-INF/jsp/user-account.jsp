@@ -105,7 +105,7 @@
 						</a>
 						</strong>						
 						<br />
-						${item.description}
+						<c:out value="${item.description}" escapeXml="false" />		 						
 					</td>
 				</tr>
 			</c:forEach>
