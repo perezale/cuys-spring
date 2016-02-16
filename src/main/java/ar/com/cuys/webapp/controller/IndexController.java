@@ -14,10 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import ar.com.cuys.webapp.entity.Subject;
 import ar.com.cuys.webapp.service.ItemService;
+import ar.com.cuys.webapp.service.PostService;
 import ar.com.cuys.webapp.service.SubjectService;
 
 @Controller
 public class IndexController {
+	
+	@Autowired
+	private PostService postService;
 	
 	@Autowired
 	private ItemService itemService;
@@ -33,6 +37,7 @@ public class IndexController {
 	@RequestMapping("/index")
 	public String index(Model model){
 		model.addAttribute("items", itemService.getItems());
+		model.addAttribute("posts", postService.getPosts());
 		return "index";
 	}
 	
