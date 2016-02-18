@@ -21,7 +21,10 @@ public class Post {
 	@Id
 	@GeneratedValue
 	private Integer id;
-
+	
+	@Size(min=1, message="El titulo no puede ser vacio")
+	private String title;
+	
 	@Size(min=1, message="El mensaje no puede ser vacio")
 	private String message;
 
@@ -39,12 +42,24 @@ public class Post {
 	@JoinTable	
 	private List<Subject> subjects;
 	
+	@ManyToMany
+	@JoinTable	
+	private List<Category> categories;
+	
 	public Integer getId() {
 		return id;
 	}
 
 	public void setId(Integer id) {
 		this.id = id;
+	}	
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public User getUser() {
@@ -85,6 +100,14 @@ public class Post {
 
 	public void setSubjects(List<Subject> subjects) {
 		this.subjects = subjects;
+	}
+
+	public List<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(List<Category> categories) {
+		this.categories = categories;
 	}	
 	
 	

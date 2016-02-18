@@ -1,8 +1,11 @@
 package ar.com.cuys.webapp.entity;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -17,10 +20,10 @@ public class Category {
 
 	@Size(min = 1, message = "La url no debe ser vacia")
 	private String url;
-/*
-	@OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE)
-	private List<Blog> posts;
-*/
+
+	@ManyToMany(mappedBy = "categories")	
+	private List<Post> posts;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -43,6 +46,14 @@ public class Category {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
 	}
 
 }

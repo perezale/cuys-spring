@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="../layout/taglib.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <div class="row">
 	<!-- LEFT PANE -->
@@ -42,14 +43,22 @@
 						    <a href="#">
 						      <img class="media-object img-circle" alt="" width="64px"
 						       src="https://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png" >
-						    </a>
+						    </a>						    
+						    <p class="text-center"> <c:out value="${post.user.name}" /></p>
 					  	</div>
 						<div class="media-body">
 						    <h4 class="media-heading"><a
-									href="<c:out value="${post.id}" />" target="_blank"> <c:out value="${post.user.name}" />
-								</a></h4>				  
-							<c:out value="${post.publishedDate}" /><br>																				
-							<c:out value="${post.message}" escapeXml="false" />
+									href="<spring:url value="/aportes/${post.id}.html" />" target="_blank"> <c:out value="${post.title}" />
+								</a><small>
+								<c:forEach items="${post.subjects}" var="subject">
+									<span class="badge">${subject.title}</span>
+								</c:forEach>
+								</small>
+							</h4>				  						
+							<fmt:formatDate value="${post.publishedDate}" pattern="dd/MM/yyyy" var="newdatevar" />		
+						    <c:out value="${newdatevar}" /><br>							
+							<c:out value="${post.message}" escapeXml="false" /><br>
+							
 						</div>
 					</div>						 
 				</c:forEach>

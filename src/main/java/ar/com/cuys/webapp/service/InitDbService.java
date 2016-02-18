@@ -1,7 +1,6 @@
 package ar.com.cuys.webapp.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -72,13 +71,11 @@ public class InitDbService {
 		blogExactas.setUser(userAdmin);
 		blogRepository.save(blogExactas);		
 		
-		Post post = new Post();
-		post.setMessage("Para el que no vió la pág.. <br><br>Jueves 13/08: sin clases <br>Martes 18/08: primera clase teórica <br>Publicado a las hace 5 horas por Juan Feldman");
-		post.setPublishedDate(new Date());
-		post.setUser(userAdmin);		
-		Subject subject = subjectRepository.findByTitle("Sistemas de Software");
-		post.setSubjects(Arrays.asList(subject));
-		postRepository.save(post);
+		List<Post> posts = postRepository.findAll();
+		for(Post p : posts){
+			p.setUser(userAdmin);
+			postRepository.save(p);
+		}
 						
 	}
 	

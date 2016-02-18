@@ -3,17 +3,16 @@ package ar.com.cuys.webapp.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.access.method.P;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
-import ar.com.cuys.webapp.entity.Item;
 import ar.com.cuys.webapp.entity.Blog;
+import ar.com.cuys.webapp.entity.Item;
 import ar.com.cuys.webapp.entity.User;
 import ar.com.cuys.webapp.exception.RssException;
-import ar.com.cuys.webapp.repository.ItemRepository;
 import ar.com.cuys.webapp.repository.BlogRepository;
+import ar.com.cuys.webapp.repository.ItemRepository;
 import ar.com.cuys.webapp.repository.UserRepository;
 
 @Service
@@ -49,7 +48,7 @@ public class BlogService {
 		
 	}
 	
-	@Scheduled(fixedDelay=3600000)
+	//@Scheduled(fixedDelay=3600000)
 	public void reloadBlogs(){
 		List<Blog> blogs = blogRepository.findAll();
 		for(Blog blog : blogs){
@@ -58,7 +57,7 @@ public class BlogService {
 	}
 	
 	public void save(Blog blog, String name) {
-		User user = userRepository.findByName(name);
+		User user = userRepository.findByNameIgnoreCase(name);
 		blog.setUser(user);
 		blogRepository.save(blog);		
 		saveItems(blog);

@@ -73,7 +73,7 @@ public class UserService {
 	}
 
 	public User findOneWithBlogs(String name) {
-		User user = userRepository.findByName(name);
+		User user = userRepository.findByNameIgnoreCase(name);
 		return findOneWithBlogs(user.getId());
 	}
 
@@ -82,7 +82,7 @@ public class UserService {
 	}
 
 	public User findOne(String username) {
-		return userRepository.findByName(username);
+		return userRepository.findByNameIgnoreCase(username);
 	}
 
 }

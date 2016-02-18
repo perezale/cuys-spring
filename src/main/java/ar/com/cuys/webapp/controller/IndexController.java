@@ -37,7 +37,7 @@ public class IndexController {
 	@RequestMapping("/index")
 	public String index(Model model){
 		model.addAttribute("items", itemService.getItems());
-		model.addAttribute("posts", postService.getPosts());
+		model.addAttribute("posts", postService.findAllWithSubjects());
 		return "index";
 	}
 	
