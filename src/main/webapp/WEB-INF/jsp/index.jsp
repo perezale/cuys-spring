@@ -48,8 +48,7 @@
 					  	</div>
 						<div class="media-body">
 						    <h4 class="media-heading"><a
-									href="<spring:url value="/aportes/${post.id}.html" />" target="_blank"> <c:out value="${post.title}" />
-								</a><small>
+									href="<spring:url value="/aportes/${post.id}.html" />" target="_blank"> <c:out value="${post.title}" /></a><small>
 								<c:forEach items="${post.subjects}" var="subject">
 									<span class="badge">${subject.title}</span>
 								</c:forEach>

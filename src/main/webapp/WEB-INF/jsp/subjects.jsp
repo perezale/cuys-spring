@@ -91,7 +91,7 @@
 </security:authorize>
 
 <c:forEach items="${subjects}" var="subject">
-	<h3><a href="<spring:url value="/catedras/${subject.urlTitle}.html" />">${subject.title}</a></h3>				
+	<h4><a href="<spring:url value="/catedras/${subject.urlTitle}.html" />">${subject.title}</a></h4>				
 </c:forEach>
 
 
