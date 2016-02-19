@@ -16,6 +16,6 @@ public interface SubjectRepository extends  JpaRepository<Subject, Integer>{
 	
 	Subject findByTitle(String title);
 	
-	List<Subject> findByPosts(List<Post> p, Pageable pageable);
+	List<Subject> findByPosts(List<Post> posts, Pageable pageable);
 
 }

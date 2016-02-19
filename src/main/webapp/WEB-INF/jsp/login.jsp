@@ -46,13 +46,14 @@
 }
 </style>
 
-
-<c:if test="${param.logout != null}">
-	<div class="alert alert-success" role="alert"> <strong>Chau!</strong> Gracias por pasar por XX. </div>
-</c:if>
-
 <form class="form-signin" action="<spring:url value="/login" />" method="POST">
 	<h2 class="form-signin-heading">Ingreso</h2>
+	<c:if test="${param.logout != null}">
+		<div class="alert alert-success" role="alert"> <strong>Chau!</strong> Gracias por pasar por CUYS. </div>
+	</c:if>
+	<c:if test="${param.error != null}">
+		<div class="alert alert-warning" role="alert"> <strong>ERROR</strong> Credenciales inválidas </div>
+	</c:if>
 	<label for="inputEmail" class="sr-only">Email address</label> <input
 		type="text" id="username" name="username" class="form-control"
 		placeholder="Usuario" required autofocus> <label
@@ -63,6 +64,6 @@
 		<label> <input type="checkbox" value="remember-me">
 			Remember me
 		</label>
-	</div>
+	</div>	
 	<button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
 </form>

@@ -18,8 +18,10 @@ import ar.com.cuys.legacy.entity.Aporte;
 import ar.com.cuys.legacy.entity.Catedra;
 import ar.com.cuys.legacy.entity.Categoria;
 import ar.com.cuys.webapp.entity.Attachment;
+import ar.com.cuys.webapp.entity.Category;
 import ar.com.cuys.webapp.entity.Post;
 import ar.com.cuys.webapp.entity.Subject;
+import ar.com.cuys.webapp.repository.CategoryRepository;
 import ar.com.cuys.webapp.repository.PostRepository;
 import ar.com.cuys.webapp.repository.SubjectRepository;
 
@@ -32,11 +34,18 @@ public class LegacyIntegrationService {
 	@Autowired
 	private PostRepository postRepository;
 	
-	private RestTemplate restTemplate = new RestTemplate();	
+	@Autowired
+	private CategoryRepository categoryRepository;	
+	
+	private RestTemplate restTemplate = new RestTemplate();
+	
 	
 	@PostConstruct
 	public void init(){
 		List<Catedra> catedras = this.getCatedras();
+		List<Categoria> categorias = this.getCategorias();
+		List<Aporte> aportes = this.getAportes();
+		
 		for(Catedra catedra : catedras){
 			Subject subject = new Subject();
 			subject.setTitle(catedra.getTitle());
@@ -45,8 +54,12 @@ public class LegacyIntegrationService {
 			subjectRepository.save(subject);
 		}
 		
-		
-		List<Aporte> aportes = this.getAportes();
+		for(Categoria categoria: categorias){
+			Category category = new Category();
+			category.setName(categoria.getNombre());						
+			categoryRepository.save(category);
+		}
+					
 		for(Aporte aporte : aportes){
 			Attachment attachment = new Attachment();
 			attachment.setLink(aporte.getPath());		
@@ -55,6 +68,10 @@ public class LegacyIntegrationService {
 			post.setTitle(aporte.getTitle());
 			post.setPublishedDate(new Date());
 			post.setSubjects(this.findSubjects(new int[]{aporte.getCatedra()}, catedras));
+			List<Category> findCategories = this.findCategories(aporte.getCategorias(), categorias);
+			System.err.println(Arrays.toString(findCategories.toArray()));
+			post.setCategories(findCategories);
+			
 			post.setAttachments(Arrays.asList(new Attachment[]{attachment}));
 			postRepository.save(post);
 			
@@ -67,6 +84,18 @@ public class LegacyIntegrationService {
 			for(Catedra c : catedras){
 				if(c.getId() == catedra){
 					output.add(subjectRepository.findByTitle(c.getTitle()));
+				}
+			}
+		}
+		return output;		
+	}
+	
+	private List<Category> findCategories(List<Integer> busqueda, List<Categoria> categorias) {
+		List<Category> output = new ArrayList<Category>();		
+		for(int categoria : busqueda){
+			for(Categoria c : categorias){
+				if(c.getId_categoria() == categoria){
+					output.add(categoryRepository.findByName(c.getNombre()));
 				}
 			}
 		}

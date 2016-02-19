@@ -39,7 +39,7 @@ public class IndexController {
 	@RequestMapping("/index")
 	public String index(Model model){
 		model.addAttribute("items", itemService.getItems(new PageRequest(0,3,Direction.DESC,"publishedDate")));
-		model.addAttribute("posts", postService.findAllWithSubjects());
+		model.addAttribute("posts", postService.findAllWithSubjectsAndCategories(new PageRequest(0,20,Direction.DESC,"publishedDate")));
 		return "index";
 	}
 	

@@ -24,20 +24,25 @@
 						      <img class="media-object img-circle" alt="" width="64px"
 						       src="https://pingendo.github.io/pingendo-bootstrap/assets/user_placeholder.png" >
 						    </a>						    
-						    <p class="text-center"> <c:out value="${post.user.name}" /></p>
+						    <p class="text-center"><c:out value="${post.user.name}" /></p>
 					  	</div>
 						<div class="media-body">
 						    <h4 class="media-heading"><a
 									href="<spring:url value="/aportes/${post.id}.html" />" target="_blank"> <c:out value="${post.title}" /></a><small>
 								<c:out value="${post.timeAgo}" />
 								</small>
-							</h4>											  												
+							</h4>							
+							<c:forEach items="${post.categories}" var="category">			
+								<span class="label label-info">${category.name }</span>
+							</c:forEach>
 							<c:out value="${post.message}" escapeXml="false" />
-							<c:if test="${not empty post.message}">
-							<br></c:if>
+							<c:if test="${not empty post.message}">							
+								<br>
+							</c:if>  
 							<c:forEach items="${post.subjects}" var="subject">
 									<span class="badge">${subject.title}</span>
-							</c:forEach>							
+							</c:forEach>								
+							
 						</div>
 					</div>						 
 				</c:forEach>

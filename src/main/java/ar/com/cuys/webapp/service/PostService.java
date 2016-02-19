@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import ar.com.cuys.webapp.entity.Post;
+import ar.com.cuys.webapp.repository.CategoryRepository;
 import ar.com.cuys.webapp.repository.PostRepository;
 import ar.com.cuys.webapp.repository.SubjectRepository;
 
@@ -21,23 +22,21 @@ public class PostService {
 	@Autowired
 	private SubjectRepository subjectRepository;
 	
+	@Autowired
+	private CategoryRepository categoryRepository;
+	
 	public List<Post> findAll(){
 		return postRepository.findAll(new PageRequest(0,20,Direction.DESC,"publishedDate")).getContent();
 	}
 	
-	public List<Post> findAllWithSubjects(){
-		List<Post> posts = postRepository.findAll(new PageRequest(0,20,Direction.DESC,"publishedDate")).getContent();
+	public List<Post> findAllWithSubjectsAndCategories(PageRequest pageRequest){
+		List<Post> posts = postRepository.findAll(pageRequest).getContent();
 		for(Post p : posts){
-			p.setSubjects(subjectRepository.findByPosts(Arrays.asList(new Post[]{p}), new PageRequest(0, 10,Direction.ASC,"title")));
+			List<Post> list = Arrays.asList(new Post[]{p});
+			p.setSubjects(subjectRepository.findByPosts(list, new PageRequest(0, 10,Direction.ASC,"title")));
+			p.setCategories(categoryRepository.findByPosts(list, new PageRequest(0, 10,Direction.ASC,"name")));
 		}
 		return posts;
 	}
 
-	public List<Post> getCroppedPosts(){
-		List<Post> content = postRepository.findAll(new PageRequest(0,20,Direction.DESC,"publishedDate")).getContent();
-		for(Post p : content){
-			//p.setMessage(StringUtils.);
-		}
-		return content;
-	} 
 }
