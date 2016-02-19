@@ -5,6 +5,8 @@ import java.security.Principal;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -36,7 +38,7 @@ public class IndexController {
 	
 	@RequestMapping("/index")
 	public String index(Model model){
-		model.addAttribute("items", itemService.getItems());
+		model.addAttribute("items", itemService.getItems(new PageRequest(0,3,Direction.DESC,"publishedDate")));
 		model.addAttribute("posts", postService.findAllWithSubjects());
 		return "index";
 	}

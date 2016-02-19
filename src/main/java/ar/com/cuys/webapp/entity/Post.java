@@ -2,6 +2,7 @@ package ar.com.cuys.webapp.entity;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
+
+import org.ocpsoft.prettytime.PrettyTime;
 
 @Entity
 public class Post {
@@ -109,6 +112,10 @@ public class Post {
 	public void setCategories(List<Category> categories) {
 		this.categories = categories;
 	}	
-	
+
+	public String getTimeAgo(){
+		PrettyTime p = new PrettyTime(new Locale("ES"));		
+		return p.format(this.publishedDate); 
+	}
 	
 }

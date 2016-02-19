@@ -1,6 +1,7 @@
 package ar.com.cuys.webapp.entity;
 
 import java.util.Date;
+import java.util.Locale;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.validator.constraints.URL;
+import org.ocpsoft.prettytime.PrettyTime;
 
 @Entity
 public class Item {
@@ -79,6 +81,11 @@ public class Item {
 
 	public void setLink(String link) {
 		this.link = link;
+	}
+	
+	public String getTimeAgo(){
+		PrettyTime p = new PrettyTime(new Locale("ES"));		
+		return p.format(this.publishedDate); 
 	}
 
 }

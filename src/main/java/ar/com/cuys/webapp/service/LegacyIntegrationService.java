@@ -7,7 +7,6 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
@@ -27,8 +26,6 @@ import ar.com.cuys.webapp.repository.SubjectRepository;
 @Service
 public class LegacyIntegrationService {
 	
-	private static Logger logger = Logger.getRootLogger(); 
-
 	@Autowired
 	private SubjectRepository subjectRepository;
 	

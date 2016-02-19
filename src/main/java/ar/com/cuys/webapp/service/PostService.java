@@ -32,5 +32,12 @@ public class PostService {
 		}
 		return posts;
 	}
-	
+
+	public List<Post> getCroppedPosts(){
+		List<Post> content = postRepository.findAll(new PageRequest(0,20,Direction.DESC,"publishedDate")).getContent();
+		for(Post p : content){
+			//p.setMessage(StringUtils.);
+		}
+		return content;
+	} 
 }
