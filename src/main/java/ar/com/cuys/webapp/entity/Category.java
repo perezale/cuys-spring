@@ -56,4 +56,9 @@ public class Category {
 		this.posts = posts;
 	}
 
+	@Override
+	public String toString() {
+		return "Category [id=" + id + ", name=" + name + ", url=" + url + "]";
+	}
+
 }

@@ -68,8 +68,7 @@ public class LegacyIntegrationService {
 			post.setTitle(aporte.getTitle());
 			post.setPublishedDate(new Date());
 			post.setSubjects(this.findSubjects(new int[]{aporte.getCatedra()}, catedras));
-			List<Category> findCategories = this.findCategories(aporte.getCategorias(), categorias);
-			System.err.println(Arrays.toString(findCategories.toArray()));
+			List<Category> findCategories = this.findCategories(aporte.getCategorias(), categorias);			
 			post.setCategories(findCategories);
 			
 			post.setAttachments(Arrays.asList(new Attachment[]{attachment}));

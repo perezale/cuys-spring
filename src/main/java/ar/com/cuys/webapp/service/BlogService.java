@@ -49,7 +49,7 @@ public class BlogService {
 		
 	}
 	
-	@Scheduled(fixedDelay=3600000)
+	//@Scheduled(fixedDelay=3600000)
 	public void reloadBlogs(){
 		List<Blog> blogs = blogRepository.findAll();
 		for(Blog blog : blogs){
