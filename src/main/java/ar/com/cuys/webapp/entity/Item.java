@@ -21,19 +21,22 @@ public class Item {
 	private Integer id;
 
 	private String title;
-	
-	@Column(columnDefinition = "longvarchar")	
+
+	@Column(columnDefinition = "longvarchar")
 	private String description;
-	
+
 	@Column(name = "publish_date")
 	private Date publishedDate;
-	
-	@URL(message="URL inválida")
+
+	@URL(message = "URL inválida")
 	private String link;
 
 	@ManyToOne
 	@JoinColumn(name = "blog_id")
 	private Blog blog;
+
+	@URL(message = "URL inválida")
+	private String thumbnail;
 
 	public Integer getId() {
 		return id;
@@ -82,10 +85,18 @@ public class Item {
 	public void setLink(String link) {
 		this.link = link;
 	}
-	
-	public String getTimeAgo(){
-		PrettyTime p = new PrettyTime(new Locale("ES"));		
-		return p.format(this.publishedDate); 
+
+	public String getThumbnail() {
+		return thumbnail;
+	}
+
+	public void setThumbnail(String thumbnail) {
+		this.thumbnail = thumbnail;
+	}
+
+	public String getTimeAgo() {
+		PrettyTime p = new PrettyTime(new Locale("ES"));
+		return p.format(this.publishedDate);
 	}
 
 }

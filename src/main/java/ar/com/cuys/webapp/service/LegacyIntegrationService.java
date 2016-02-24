@@ -15,13 +15,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import ar.com.cuys.legacy.entity.Aporte;
+import ar.com.cuys.legacy.entity.BlogPost;
 import ar.com.cuys.legacy.entity.Catedra;
 import ar.com.cuys.legacy.entity.Categoria;
 import ar.com.cuys.webapp.entity.Attachment;
+import ar.com.cuys.webapp.entity.Blog;
 import ar.com.cuys.webapp.entity.Category;
+import ar.com.cuys.webapp.entity.Item;
 import ar.com.cuys.webapp.entity.Post;
 import ar.com.cuys.webapp.entity.Subject;
+import ar.com.cuys.webapp.repository.BlogRepository;
 import ar.com.cuys.webapp.repository.CategoryRepository;
+import ar.com.cuys.webapp.repository.ItemRepository;
 import ar.com.cuys.webapp.repository.PostRepository;
 import ar.com.cuys.webapp.repository.SubjectRepository;
 
@@ -37,6 +42,12 @@ public class LegacyIntegrationService {
 	@Autowired
 	private CategoryRepository categoryRepository;	
 	
+	@Autowired
+	private BlogRepository blogRepository;
+	
+	@Autowired
+	private ItemRepository itemRepository;
+	
 	private RestTemplate restTemplate = new RestTemplate();
 	
 	
@@ -45,6 +56,7 @@ public class LegacyIntegrationService {
 		List<Catedra> catedras = this.getCatedras();
 		List<Categoria> categorias = this.getCategorias();
 		List<Aporte> aportes = this.getAportes();
+		List<BlogPost> blogposts = this.getBlogPosts();
 		
 		for(Catedra catedra : catedras){
 			Subject subject = new Subject();
@@ -72,9 +84,26 @@ public class LegacyIntegrationService {
 			post.setCategories(findCategories);
 			
 			post.setAttachments(Arrays.asList(new Attachment[]{attachment}));
-			postRepository.save(post);
-			
+			postRepository.save(post);		
 		}
+		
+		// Blog
+		Blog blog = new Blog();
+		blog.setTitle("CUYS");
+		blog.setExternal(false);	
+		blog = blogRepository.save(blog);
+				
+		for(BlogPost post : blogposts){
+			Item item = new Item();
+			item.setBlog(blog);
+			item.setTitle(post.getTitle());
+			item.setPublishedDate(post.getEntry_date());
+			item.setThumbnail(post.getThumbnail());
+			item.setDescription(post.getEntrada());			
+			//item.setLink(post.getUrl_title());
+			itemRepository.save(item);			
+		}
+							
 	}
 	
 	private List<Subject> findSubjects(int[] busqueda, List<Catedra> catedras) {
@@ -125,17 +154,28 @@ public class LegacyIntegrationService {
 		return restResponse.getBody();
 	}	
 	
+	public List<BlogPost> getBlogPosts(){
+		ResponseEntity<List<BlogPost>> restResponse =
+		        restTemplate.exchange("http://www.comoustedyasabe.com.ar/api/blog",
+		                    HttpMethod.GET, null, new ParameterizedTypeReference<List<BlogPost>>() {
+		            });
+		return restResponse.getBody();
+	}	
+	
 	public static void main(String[] args){
 		LegacyIntegrationService service = new LegacyIntegrationService();
-		for(Catedra catedra : service.getCatedras()){
-			System.out.println(catedra.toString());
+//		for(Catedra catedra : service.getCatedras()){
+//			System.out.println(catedra.toString());
+//		}
+//		for(Categoria categoria : service.getCategorias()){
+//			System.out.println(categoria.toString());
+//		}
+//		for(Aporte aporte : service.getAportes()){
+//			System.out.println(aporte.toString());
+//		}
+		for(BlogPost post : service.getBlogPosts()){
+			System.out.println(post.toString());
 		}
-		for(Categoria categoria : service.getCategorias()){
-			System.out.println(categoria.toString());
-		}
-		for(Aporte aporte : service.getAportes()){
-			System.out.println(aporte.toString());
-		}
-
+		
 	}
 }

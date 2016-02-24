@@ -10,4 +10,6 @@ import ar.com.cuys.webapp.entity.User;
 public interface BlogRepository extends JpaRepository<Blog, Integer> {
 
 	List<Blog> findByUser(User user);
+	
+	List<Blog> findByExternal(Boolean external); 
 }

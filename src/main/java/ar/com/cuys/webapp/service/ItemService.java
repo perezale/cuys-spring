@@ -19,5 +19,9 @@ public class ItemService {
 		return itemRepository.findAll(pageRequest).getContent();
 	}
 	
+	public List<Item> getItemsByExternalBlog(Boolean external, PageRequest pageRequest){		
+		return itemRepository.findByBlog_External(external, pageRequest).getContent();
+	}
+	
 	
 }

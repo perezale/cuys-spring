@@ -30,6 +30,8 @@ public class Blog {
 
 	@OneToMany(mappedBy = "blog", cascade=CascadeType.REMOVE)	
 	private List<Item> items;
+		
+	private Boolean external = true;
 	
 	public Integer getId() {
 		return id;
@@ -71,5 +73,12 @@ public class Blog {
 		this.url = url;
 	}
 
+	public Boolean getExternal() {
+		return external;
+	}
+
+	public void setExternal(Boolean external) {
+		this.external = external;
+	}
 
 }

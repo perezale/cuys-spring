@@ -1,7 +1,6 @@
 package ar.com.cuys.webapp.service;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -14,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.com.cuys.webapp.entity.Blog;
 import ar.com.cuys.webapp.entity.Post;
 import ar.com.cuys.webapp.entity.Role;
-import ar.com.cuys.webapp.entity.Subject;
 import ar.com.cuys.webapp.entity.User;
 import ar.com.cuys.webapp.repository.BlogRepository;
 import ar.com.cuys.webapp.repository.PostRepository;
