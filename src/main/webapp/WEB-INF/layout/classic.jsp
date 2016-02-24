@@ -9,38 +9,33 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="security"%>
 
 <link rel="stylesheet"
 	href="https://bootswatch.com/paper/bootstrap.min.css">
+<link href="css/bootstrap-combobox.css" media="screen" rel="stylesheet"
+	type="text/css">
 <style>
-	body {
-	  padding-top: 70px;
-	  padding-bottom: 30px;
-	}
-	
-	.theme-dropdown .dropdown-menu {
-	  position: static;
-	  display: block;
-	  margin-bottom: 20px;
-	}
-	
-	.theme-showcase > p > .btn {
-	  margin: 5px 0;
-	}
-	
-	.theme-showcase .navbar .container {
-	  width: auto;
-	}
+body {
+	padding-top: 70px;
+	padding-bottom: 30px;
+}
+
+.theme-dropdown .dropdown-menu {
+	position: static;
+	display: block;
+	margin-bottom: 20px;
+}
+
+.theme-showcase>p>.btn {
+	margin: 5px 0;
+}
+
+.theme-showcase .navbar .container {
+	width: auto;
+}
 </style>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<script type="text/javascript"
-	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
-<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/localization/messages_es_AR.js">
-	</script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <title><tiles:getAsString name="title" /></title>
 </head>
 <body>
@@ -57,8 +52,8 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="<spring:url value="/" />"> 
-				 <img height="30" style="margin-top: -4px" src="/img/logo_cuys.png"/>						
+				<a class="navbar-brand" href="<spring:url value="/" />"> <img
+					height="30" style="margin-top: -4px" src="/img/logo_cuys.png" />
 				</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
@@ -89,7 +84,7 @@
 		</div>
 		<!--/.container-fluid -->
 	</nav>
-	
+
 	<div class="container">
 		<tiles:insertAttribute name="body" />
 
@@ -98,6 +93,24 @@
 			<tiles:insertAttribute name="footer" />
 		</center>
 	</div>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
+	<script
+		src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/localization/messages_es_AR.js">
+	</script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-combobox.js" type="text/javascript"></script>
+	<script type="text/javascript">
 	
+     //<![CDATA[
+       $(document).ready(function(){
+         $('.combobox').combobox()
+       });
+     //]]>
+ 
+   </script>
 </body>
 </html>

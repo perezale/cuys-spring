@@ -8,33 +8,47 @@
 		<h4>Noticias</h4>
 	</div>
 	<div class="row">
-  <div class="col-sm-6 col-md-3">
-    <div class="thumbnail">
-      <img src="http://www.comoustedyasabe.com.ar/images/uploads/_43/ekoparty2.jpg" alt="...">
-      <div class="caption">
-        <h4>EkoParty 2015</h4>
-        <p>¿Qué es?
-Es el evento anual de seguridad informática que, por sus características únicas y su particular estilo, se ha convertido en un referente para toda Latinoamérica.</p>
-        
-      </div>
-    </div>
-  </div>
-</div>
+		<div class="col-sm-6 col-md-3">
+			<div class="thumbnail">
+				<img
+					src="http://www.comoustedyasabe.com.ar/images/uploads/_43/ekoparty2.jpg"
+					alt="...">
+				<div class="caption">
+					<h4>EkoParty 2015</h4>
+					<p>¿Qué es? Es el evento anual de seguridad informática que,
+						por sus características únicas y su particular estilo, se ha
+						convertido en un referente para toda Latinoamérica.</p>
+
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- LEFT PANE -->
-	<div class="col-md-8">	
+	<div class="col-md-8">
 		<div class="page-header">
 			<h4>Aportes</h4>
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-body">
-				<form >
-					<div class="form-group">
-						<textarea class="form-control" placeholder="Nuevo mensaje"></textarea>
+				<form class="form-horizontal">
+					<div class="form-group well">
+						<input id="message" class="form-control" placeholder="Titulo"></input>
 					</div>
-					<div class="form-group">
-											
+					<div class="form-group panel-body">											
+						<textarea id="message" class="form-control" placeholder="Nuevo mensaje"></textarea>					
+					</div>
+					<div class="form-group panel-body">						
+						<select id="select-subject" class="combobox input-large form-control">
+							<option value="" selected disabled>Cátedra</option>
+							<c:forEach items="${subjects}" var="subject">
+								<option value="${subject.urlTitle}">${subject.title}</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div class="form-group panel-body">
+
 						<button type="button" class="btn btn-default ">
-						  <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> 
+							<span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
 						</button>
 						<button type="submit" class="btn btn-primary">Publicar</button>
 					</div>
@@ -44,8 +58,10 @@ Es el evento anual de seguridad informática que, por sus características únic
 		<div>
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist">
-				<li role="presentation" class="active pull-right"><a href="#messages"
-					aria-controls="messages" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-th-list" aria-hidden="true"></span></a></li>
+				<li role="presentation" class="active pull-right"><a
+					href="#messages" aria-controls="messages" role="tab"
+					data-toggle="tab"><span class="glyphicon glyphicon-th-list"
+						aria-hidden="true"></span></a></li>
 			</ul>
 
 			<!-- Tab panes -->
