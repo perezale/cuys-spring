@@ -8,20 +8,19 @@
 		<h4>Noticias</h4>
 	</div>
 	<div class="row">
-		<div class="col-sm-6 col-md-3">
-			<div class="thumbnail">
-				<img
-					src="http://www.comoustedyasabe.com.ar/images/uploads/_43/ekoparty2.jpg"
-					alt="...">
-				<div class="caption">
-					<h4>EkoParty 2015</h4>
-					<p>¿Qué es? Es el evento anual de seguridad informática que,
-						por sus características únicas y su particular estilo, se ha
-						convertido en un referente para toda Latinoamérica.</p>
-
+		<c:forEach items="${news}" var="item">
+			<div class="col-sm-6 col-md-4">
+				<div class="thumbnail">
+					<img
+						src="${item.thumbnail }"
+						alt="...">
+					<div class="caption">
+						<h5>${item.title }</h5>
+			
+					</div>
 				</div>
 			</div>
-		</div>
+		</c:forEach>
 	</div>
 	<!-- LEFT PANE -->
 	<div class="col-md-8">

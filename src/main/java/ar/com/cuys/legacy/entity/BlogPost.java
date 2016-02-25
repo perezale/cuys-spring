@@ -55,7 +55,7 @@ public class BlogPost {
 	}
 	
 	public String getThumbnail(){
-		return this.imagen_destacada.replace("upload/", "upload/_43/");
+		return this.imagen_destacada.replace("uploads/", "uploads/_43/");
 	}
 
 	public String getEntrada() {
