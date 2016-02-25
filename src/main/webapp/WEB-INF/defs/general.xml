@@ -47,5 +47,12 @@
 		<put-attribute name="body" value="/WEB-INF/jsp/login.jsp" />
 		<put-attribute name="current" value="login" />
 	</definition>
+	
+	<definition name="publish-post" extends="common">
+		<put-attribute name="title" value="Add post" />
+		<put-attribute name="body" value="/WEB-INF/jsp/publish-post.jsp" />
+		<put-attribute name="current" value="publish-post" />
+	</definition>
+		
 		
 </tiles-definitions>
