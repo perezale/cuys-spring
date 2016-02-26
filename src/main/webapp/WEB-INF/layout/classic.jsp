@@ -14,7 +14,7 @@
 
 <link rel="stylesheet"
 	href="https://bootswatch.com/paper/bootstrap.min.css">
-<link href="css/bootstrap-combobox.css" media="screen" rel="stylesheet"
+<link href="/css/bootstrap-combobox.css" media="screen" rel="stylesheet"
 	type="text/css">
 <style>
 body {
@@ -37,6 +37,24 @@ body {
 }
 </style>
 <title><tiles:getAsString name="title" /></title>
+<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
+	<script
+		src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/localization/messages_es_AR.js">
+	</script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+		
+	<script src="/js/bootstrap-combobox.js" type="text/javascript"></script>
+	<script type="text/javascript">
+   
+       $(document).ready(function(){
+         $('.combobox').combobox()
+       });
+    
+   </script>
 </head>
 <body>
 
@@ -62,6 +80,10 @@ body {
 						href="<spring:url value="/" />">Inicio</a></li>
 					<li class="${current == 'subjects' ? 'active' : ''}"><a
 						href="<spring:url value="/catedras.html" />">Cátedras</a></li>
+					<security:authorize access="isAuthenticated()">
+						<li class="${current == 'publish-post' ? 'active' : ''}"><a
+							href="<spring:url value="/aportes/publicar.html" />">Publicar</a></li>
+					</security:authorize>
 					<security:authorize access="hasRole('ADMIN')">
 						<li class="${current == 'users' ? 'active' : ''}"><a
 							href="<spring:url value="/users.html" />">Usuarios</a></li>
@@ -93,24 +115,7 @@ body {
 			<tiles:insertAttribute name="footer" />
 		</center>
 	</div>
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-	<script type="text/javascript"
-		src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/jquery.validate.js"></script>
-	<script
-		src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.14.0/localization/messages_es_AR.js">
-	</script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script src="js/bootstrap-combobox.js" type="text/javascript"></script>
-	<script type="text/javascript">
 	
-     //<![CDATA[
-       $(document).ready(function(){
-         $('.combobox').combobox()
-       });
-     //]]>
- 
-   </script>
 </body>
 </html>
+

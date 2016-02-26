@@ -12,6 +12,7 @@
 		<intercept-url pattern="/users**" access="hasRole('ADMIN')" />
 		<intercept-url pattern="/users/**" access="hasRole('ADMIN')" />
 		<intercept-url pattern="/account**" access="hasRole('USER')" />
+		<intercept-url pattern="/aportes/**" access="hasRole('USER')" />
 		<form-login login-page="/login.html" authentication-failure-url="/login.html?error=true"/>
 		<logout />
 		<csrf disabled="true" />
