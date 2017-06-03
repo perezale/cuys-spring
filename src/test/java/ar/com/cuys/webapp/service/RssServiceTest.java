@@ -23,13 +23,13 @@ public class RssServiceTest {
 	@Test
 	public void testGetItemsFile() throws RssException {
 		List<Item> items = rssService.getItems(new File("src/test/resources/cuys.xml"));
-		assertEquals(19, items.size());
+		assertEquals(20, items.size());
 	}
 
 	@Test
 	public void testGetItemsString() throws RssException {
 		List<Item> items = rssService.getItems("https://twitrss.me/twitter_user_to_rss/?user=cuys");
-		assertEquals(19, items.size());
+		assertEquals(20, items.size());
 	}
 
 }
